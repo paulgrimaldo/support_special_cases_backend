@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Avance académico</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style type="text/css">
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .class-title {
+      font-size: 11px;
+      height: 40px;
+      font-weight: bold;
+    }
+
+    .class-initials {
+      font-size: 10px;
+    }
+
+    .class-card {
+      width: 8.20rem;
+      height: 130px !important;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+      margin-top: 0.5rem !important;
+      margin-left: 0.5rem !important;
+    }
+
+    .none {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .approved {
+      background-color: green;
+      color: #ffffff;
+    }
+
+    .registered {
+      background-color: #fcba03;
+      color: #000000;
+    }
+
+    .special_case {
+      background-color: teal;
+      color: #ffffff;
+    }
+
+    .row.text-center>div {
+      display: inline-block;
+      float: none;
+    }
+
+    .color-indicator-container {
+      width: 20px;
+      height: 20px;
+      border-radius: 2px;
+    }
+
+    .color-indicator-container.approved {
+      background-color: #008000;
+      color: #008000;
+    }
+
+    .color-indicator-container.registered {
+      background-color: #fcba03;
+      color: #fcba03;
+    }
+
+    .color-indicator-container.special_case {
+      background-color: #008080;
+      color: #008080;
+    }
+
+    .classes-indicators {
+      margin-left: 20px;
+    }
+
+    .classes-indicators p {
+      margin-top: 3px;
+      margin-bottom: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="text-center">
+    Malla curricular: {{ student.name }}, Reg: {{ student.code }}
+  </h1>
+
+  <div style="margin-left: 20px">
+    {% for semester_classes in classes.values() %}
+    <div class="row">
+      {% for class_data in semester_classes %}
+      <div class="class-card text-center col-xs-1 {% if 'type' in class_data %} {{ class_data['type'] }} {% endif %}">
+        <div class="card-body">
+          <h5 class="card-title class-title">{{ class_data.name }}</h5>
+          <p class="card-text class-initials">{{ class_data.initials }}</p>
+          {% if class_data["elective"] %}
+          <small><i>Electiva</i></small>
+          {% else %}
+          <small><i></i></small>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="classes-indicators">
+    <p>Materias aprobadas <span class="color-indicator-container approved">mm</span></p>
+    <p>Materias Inscritas <span class="color-indicator-container registered">mm</span></p>
+    <p>Materias para caso especial <span class="color-indicator-container special_case">mm</span></p>
+  </div>
+</body>
+
+</html>
