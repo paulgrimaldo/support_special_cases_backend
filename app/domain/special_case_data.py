@@ -18,6 +18,7 @@ class SpecialCaseData:
     def init(self):
         self.__transform_ordered_classes()
         self.__transform_special_case_classes()
+        self.__transform_registered_classes()
         self.__transform_student_data()
         self.__transform_career_data()
 

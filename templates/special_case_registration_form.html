@@ -1,115 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-  <meta name="description" content=""/>
-  <meta name="author" content=""/>
+    <title>Boleta de inscripci&oacute;n</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+    <style>
+      .footer {
+        background-color: #f5f5f5;
+      }
+      
+      table,
+      th,
+      tr,
+      td,
+      p {
+        font-size: 1.3rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      h3 {
+        text-decoration: underline;
+      }
+      .logo-img {
+        width: 48px !important;
+        height: 48px !important;
+      }
+      .input-bordered {
+        border: 1px solid #000;
+        border-radius: 8px;
+        padding: 8px 12px;
+        display: inline-block;
+        background-color: #f8f9fa;
+        font-weight: bold;
+        min-width: 150px;
+        text-align: center;
+      }
+      .input-bordered-full {
+         border: 1px solid #000;
+         border-radius: 8px;
+         padding: 8px 12px;
+         display: block;
+         background-color: #f8f9fa;
+         font-weight: bold;
+         width: 100%;
+       }
+       .main-container-bordered {
+        border: 1px solid #6c757d;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        margin: 15px 0;
+      }
+    </style>
+  </head>
 
-  <title>
-    Boleta de inscripci&oacute;n
-  </title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"/>
-  <style>
-    .footer {
-      background-color: #f5f5f5;
-    }
+  <body class="d-flex flex-column h-100" cz-shortcut-listen="true">
+    <main role="main" class="flex-shrink-0">
+      <div class="row content-data">
+        <div class="col-lg-12">
+          <div class="text-center">
+            <h1>
+              <img src="http://localhost:5000/static/images/uagrm_logo.svg" width="48px" height="48px" alt="UagrmLogo" class="logo-img" />
+              Universidad Aut&oacute;noma Gabriel Ren&eacute; Moreno
+            </h1>
+            <h2>
+              <img src="http://localhost:5000/static/images/ficct_logo.svg" width="48px" height="48px" alt="FicctLogo" class="logo-img" />
+              Facultad de Ingenier&iacute;a en Ciencias de la Computaci&oacute;n, Redes y Telecomunicaciones
+            </h2>
+            <h3 class="mt-5"><strong>Boleta de inscripci&oacute;n</strong> (Materias inscritas)</h3>
+            <h2 class="mt-2">{{ career.name }}</h2>
+          </div>
 
-    table, th, tr, td, p {
-      font-size: 1.3rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-    }
-
-    h3 {
-      text-decoration: underline;
-    }
-    .logo-img { 
-      width: 48px !important;
-      height: 48px !important;
-    }
-  </style>
-</head>
-
-<body class="d-flex flex-column h-100" cz-shortcut-listen="true">
-<main role="main" class="flex-shrink-0">
-  <div class="row content-data">
-    <div class="col-lg-12">
-      <div class="text-center">
-        <h1>
-          <img src="http://localhost:5000/static/images/uagrm_logo.svg" width="48px" height="48px" alt="UagrmLogo" class="logo-img">
-          Universidad Aut&oacute;noma Gabriel Ren&eacute; Moreno
-        </h1>
-        <h2>
-          <img src="http://localhost:5000/static/images/ficct_logo.svg" width="48px" height="48px" alt="FicctLogo" class="logo-img">
-          Facultad de Ingenier&iacute;a en Ciencias de la Computaci&oacute;n, Redes y Telecomunicaciones
-        </h2>
-        <h3 class="mt-5"><strong>Boleta de inscripci&oacute;n</strong></h3>
+          <div class="main-container-bordered">
+            <div class="mt-3">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">Registro</th>
+                    <th scope="col">C.I.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <table style="display: inline-table; border-collapse: collapse;">
+                        <tr>
+                          {% for digit in student.code %}
+                            <td style="border: 1px solid #000; width: 25px; height: 30px; text-align: center; vertical-align: middle; font-weight: bold;">{{ digit }}</td>
+                          {% endfor %}
+                        </tr>
+                      </table>
+                    </td>
+                    <td>
+                      <div class="input-bordered text-center">{{ student.dni }}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                      <strong>Nombres y Apellidos:</strong><br />
+                      <div class="input-bordered-full">{{ student.name }}</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <table class="table table-bordered mt-5 text-center">
+              <thead>
+                <tr>
+                  <th scope="col">Materia</th>
+                  <th scope="col">Sigla</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for class_data in registered_classes %}
+                  <tr>
+                    <td>{{ class_data.name }}</td>
+                    <td>{{ class_data.initials }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
-
-      <div class="mt-5">
-        <p>
-          <strong>Estudiante:</strong> {{ student.name }}
-        </p>
-
-        <p>
-          <strong>Registro:</strong> {{ student.code }}
-        </p>
-
-        <p>
-          <strong>CI: </strong> {{ student.dni }}
-        </p>
-        <p>
-          <strong>Carrera: </strong> {{ career.name }}
-        </p>
-
+    </main>
+    <footer class="footer mt-auto py-3">
+      <div class="row">
+        <div class="col-lg-12">
+          <img src="http://localhost:5000/static/images/support_logo.svg" width="48px" height="48px" alt="SupportFicct" class="logo-img" />
+          <strong>#SupportFicct</strong>
+          <p>
+            <small>Este documento ha sido generado con <strong><i>Support Ficct generador de documentos para casos especiales</i></strong></small>
+          </p>
+        </div>
       </div>
-
-      <table class="table mt-5 text-center">
-        <thead>
-        <tr>
-          <th scope="col">Materia</th>
-          <th scope="col">Sigla</th>
-          <th scope="col">Grupo</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for class_data in registered_classes %}
-
-          <tr>
-            <td>{{ class_data["name"] }}</td>
-            <td>{{ class_data["initials"] }}</td>
-            <td>{{ class_data["group"] }}</td>
-          </tr>
-
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</main>
-<footer class="footer mt-auto py-3">
-  <div class="row">
-    <div class="col-lg-12">
-      <img src="http://localhost:5000/static/images/support_logo.svg" width="48px" height="48px" alt="SupportFicct" class="logo-img">
-      <strong>#SupportFicct</strong>
-      <p>
-        <small>
-          Este documento ha sido generado con <strong><i>Support Ficct generador de documentos para casos especiales</i></strong>
-        </small>
-      </p>
-    </div>
-  </div>
-</footer>
-</body>
-
+    </footer>
+  </body>
 </html>
