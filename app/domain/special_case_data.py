@@ -1,12 +1,15 @@
 def _is_special_case_class(class_data):
     return "type" in class_data and class_data["type"] == "special_case"
 
+def _is_registered_class(class_data):
+    return "type" in class_data and class_data["type"] == "registered"
 
 class SpecialCaseData:
 
     def __init__(self, data):
         self.data = data
         self.ordered_classes = {}
+        self.registered_classes = list()
         self.special_case_classes = list()
         self.student_data = None
         self.career_data = None
@@ -33,6 +36,14 @@ class SpecialCaseData:
 
                 if _is_special_case_class(class_data):
                     self.special_case_classes.append(class_data)
+
+    def __transform_registered_classes(self):
+        for semester_classes in self.ordered_classes.values():
+
+            for class_data in semester_classes:
+
+                if _is_registered_class(class_data):
+                    self.registered_classes.append(class_data)
 
     def __transform_student_data(self):
         self.student_data = self.data["student"]
