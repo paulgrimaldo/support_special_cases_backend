@@ -45,11 +45,11 @@ class SpecialCasePdfService:
     def create_registration_form_pdf(self):
         student = self.special_case_data.student_data
         career = self.special_case_data.career_data
-        special_case_classes = self.special_case_data.special_case_classes
+        registered_classes = self.special_case_data.registered_classes
 
         context = {
             'career': career,
-            'special_case_classes': special_case_classes,
+            'registered_classes': registered_classes,
             'student': student
         }
 
